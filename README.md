@@ -1,0 +1,36 @@
+# VETRA marketplace
+
+A dependency-free, Vercel-ready multi-store fashion marketplace.
+
+## Deploy
+1. Extract this folder and push it to GitHub.
+2. Import the repository in Vercel.
+3. Choose framework preset **Other** and deploy.
+4. Add `admin.your-domain.com` to the same Vercel project if desired.
+
+## Admin
+- Route: `/0`
+- Demo username: `Admin`
+- Demo password: `2009`
+
+Change the demo authentication before accepting real orders. The included version stores catalog edits, themes, cart, and order drafts in browser storage. For a real production launch, replace the demo login and browser storage with a server-side database/auth provider such as Supabase, Neon, or Vercel Postgres.
+
+## Before launch
+- Replace all sample WhatsApp numbers, addresses, emails, and policies.
+- Test each store's WhatsApp order flow.
+- Add a privacy policy, delivery policy, and return policy.
+- Set your custom domain in Vercel.
+
+## Included
+Store directory and pages, product color galleries, size/SKU/stock variants, slide-out cart, grouped multi-store cart, checkout review, structured WhatsApp messages, order confirmation, responsive admin panel, content controls, store/product editing, and nine color themes.
+
+## Version 2 admin updates
+
+- **Catalog hierarchy:** Store → products in that store → product information → color pictures + size/SKU/stock/price variants.
+- **Media:** replace, upload, or delete the homepage hero, marketplace logo, store covers/logos, and every product image.
+- **Homepage:** edit the announcement, hero headline, introduction, and hero picture.
+- **Website identity:** edit the marketplace name, logo URL/upload, logo alternative text, currency, WhatsApp number, and delivery fee.
+- **Languages:** visitors and admins can switch between English, French, and Arabic; Arabic activates an RTL layout.
+- **Mobile admin:** the navigation scrolls within its own bar, cards stack, action buttons wrap, image grids collapse, and variant tables scroll inside their container rather than overflowing the page.
+
+Uploaded images are saved in browser storage in this demo build. Connect a production database/object-storage service before accepting real marketplace content from multiple devices.
