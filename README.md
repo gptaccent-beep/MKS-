@@ -34,3 +34,7 @@ Store directory and pages, product color galleries, size/SKU/stock variants, sli
 - **Mobile admin:** the navigation scrolls within its own bar, cards stack, action buttons wrap, image grids collapse, and variant tables scroll inside their container rather than overflowing the page.
 
 Uploaded images are saved in browser storage in this demo build. Connect a production database/object-storage service before accepting real marketplace content from multiple devices.
+
+## Important deployment fix — v2.1
+
+This archive is deliberately **flat**: `index.html`, `vercel.json`, and `assets/` are directly at the ZIP root. The language/admin enhancements are inlined into `index.html`, so Vercel cannot omit a separate enhancement script or stylesheet. Read `DEPLOY-NOW.txt` and redeploy without the old build cache.

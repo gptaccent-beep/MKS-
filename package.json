@@ -1,1 +1,5 @@
-{"name":"vetra-marketplace","version":"1.0.0","private":true}
+{
+  "name": "vetra-marketplace",
+  "version": "2.1.0",
+  "private": true
+}
