@@ -1,18 +1,15 @@
-VETRA 2.1.0 DEPLOYMENT
+VETRA 3.0.0 DEPLOYMENT
 
-IMPORTANT: The ZIP contents must be the ROOT of the Vercel project.
-You should see index.html, vercel.json, package.json, README.md and assets/ immediately after extracting — not another folder.
-
-REPLACE THE OLD DEPLOYMENT
-1. Delete the old project files from your GitHub repository (keep the .git folder).
-2. Copy every extracted file and the assets folder into the repository root.
+1. Extract this archive. index.html, vercel.json, api/, i18n/, supabase/ and assets/ must be at the repository root.
+2. Replace the old repository files instead of merging only index.html.
 3. Commit and push.
-4. In Vercel, open Deployments → Redeploy the latest commit → disable “Use existing Build Cache”.
-5. Open the new deployment in an Incognito window.
+4. In Vercel, redeploy without the existing build cache.
+5. Confirm the EN / FR / AR selector and the new Analytics item at /0.
 
-CONFIRM VERSION 2.1
-- The header must show an EN / FR / AR selector.
-- /0 must show Catalog, Media, Homepage, Orders, Themes and Settings.
-- Browser DevTools → Network → the page response includes X-VETRA-Version: 2.1.0.
+OPTIONAL SHARED ANALYTICS
+- Run supabase/analytics.sql.
+- Add SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY and ANALYTICS_ADMIN_KEY from .env.example to Vercel.
+- Redeploy.
+- In Admin → Analytics, choose Sync cloud and enter ANALYTICS_ADMIN_KEY.
 
-If these are not visible, Vercel is still deploying the old repository/branch or the wrong Root Directory. Set Project Settings → Build & Deployment → Root Directory to the folder containing index.html (normally blank / repository root).
+Without those variables, timestamped raw analytics still work locally in the current browser for preview/testing.

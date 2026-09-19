@@ -38,3 +38,19 @@ Uploaded images are saved in browser storage in this demo build. Connect a produ
 ## Important deployment fix — v2.1
 
 This archive is deliberately **flat**: `index.html`, `vercel.json`, and `assets/` are directly at the ZIP root. The language/admin enhancements are inlined into `index.html`, so Vercel cannot omit a separate enhancement script or stylesheet. Read `DEPLOY-NOW.txt` and redeploy without the old build cache.
+
+## VETRA v3.0
+
+This release implements the complete admin/content prompt:
+
+- media manager for hero, logo, store, category and product images
+- product create/edit/delete controls inside Media and the nested Catalog
+- homepage hero, featured-product and reorderable layout-block editor
+- website name, logo preview, browser title and SEO description settings
+- persisted EN/FR/AR switcher with structured files in `i18n/` and Arabic RTL
+- responsive admin layouts for phones and tablets
+- drillable Store → Products → Product Detail → Information/Pictures/Variants workflow
+- timestamped raw `view` and `lead` analytics, store/product aggregation, sorting and CSV export
+- optional shared Supabase analytics through `api/analytics.js`
+
+Review `MIGRATION-NOTES.md` before enabling cloud analytics. The SQL migration is additive and non-breaking.

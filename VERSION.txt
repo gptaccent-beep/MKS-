@@ -1,1 +1,1 @@
-VETRA 2.1.0 — flat, self-contained deployment
+VETRA 3.0.0 — content, hierarchy and analytics release
