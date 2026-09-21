@@ -1,1 +1,1 @@
-VETRA 3.0.0 — content, hierarchy and analytics release
+VETRA 4.0.0 — upload-first markets, products and homepage release

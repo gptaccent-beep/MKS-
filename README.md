@@ -54,3 +54,16 @@ This release implements the complete admin/content prompt:
 - optional shared Supabase analytics through `api/analytics.js`
 
 Review `MIGRATION-NOTES.md` before enabling cloud analytics. The SQL migration is additive and non-breaking.
+
+## VETRA v4.0 admin order
+
+The admin navigation is now exactly:
+Dashboard → Orders → Markets → Products → Homepage → Analytics → Themes → Settings → Sign out.
+
+- Dashboard counts all markets, active markets, 7-day unique visitors and 7-day orders.
+- Orders sort by date, market or product and can reopen the order as a WhatsApp message.
+- Markets support add/delete/hide plus editable logo, cover, name, contact, email, Instagram, Facebook and website.
+- Products are organized under their market, with add/delete/hide, description, regular/promo price, variants and up to 10 images/videos.
+- Homepage combines website name/logo, hero media/text and section media/text controls.
+- Image controls accept uploads from PC or mobile and optimize images before browser storage.
+- Short video uploads are supported up to 3 MB in this browser edition. Use cloud object storage for larger production videos.

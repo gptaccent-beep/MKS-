@@ -1,15 +1,15 @@
-VETRA 3.0.0 DEPLOYMENT
+VETRA 4.0.0 DEPLOYMENT
 
-1. Extract this archive. index.html, vercel.json, api/, i18n/, supabase/ and assets/ must be at the repository root.
-2. Replace the old repository files instead of merging only index.html.
-3. Commit and push.
-4. In Vercel, redeploy without the existing build cache.
-5. Confirm the EN / FR / AR selector and the new Analytics item at /0.
+1. Extract the ZIP and replace the files in the repository root.
+2. Keep Vercel Root Directory blank (repository root).
+3. Commit and push all files.
+4. Wait for the latest Vercel deployment and promote it to Production if needed.
+5. Hard-refresh the website.
 
-OPTIONAL SHARED ANALYTICS
-- Run supabase/analytics.sql.
-- Add SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY and ANALYTICS_ADMIN_KEY from .env.example to Vercel.
-- Redeploy.
-- In Admin → Analytics, choose Sync cloud and enter ANALYTICS_ADMIN_KEY.
+VERIFY
+- /0 shows Dashboard, Orders, Markets, Products, Homepage, Analytics, Themes, Settings.
+- The admin header says Admin · v4.0.0.
+- document.body.dataset.vetraVersion returns 4.0.0.
 
-Without those variables, timestamped raw analytics still work locally in the current browser for preview/testing.
+MEDIA
+Images uploaded from PC/mobile are optimized and stored in browser data for this static edition. Short product videos must be under 3 MB. For larger files and shared multi-device persistence, connect cloud object storage.
