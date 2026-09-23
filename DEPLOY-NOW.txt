@@ -1,15 +1,15 @@
-VETRA 4.0.0 DEPLOYMENT
+VETRA 4.1.0 — INSTANT SAVE FIX
 
-1. Extract the ZIP and replace the files in the repository root.
-2. Keep Vercel Root Directory blank (repository root).
+1. Extract this ZIP into the repository root and replace the old files.
+2. Keep Vercel Root Directory blank.
 3. Commit and push all files.
-4. Wait for the latest Vercel deployment and promote it to Production if needed.
-5. Hard-refresh the website.
+4. Promote the newest deployment to Production if needed.
+5. Hard-refresh both admin and storefront tabs.
 
 VERIFY
-- /0 shows Dashboard, Orders, Markets, Products, Homepage, Analytics, Themes, Settings.
-- The admin header says Admin · v4.0.0.
-- document.body.dataset.vetraVersion returns 4.0.0.
+- Admin header says Admin · v4.1.0.
+- The admin header shows Saving… then Saved after every change.
+- Keep the storefront open in another tab: saved text and image changes should refresh there automatically.
+- document.body.dataset.vetraVersion returns 4.1.0.
 
-MEDIA
-Images uploaded from PC/mobile are optimized and stored in browser data for this static edition. Short product videos must be under 3 MB. For larger files and shared multi-device persistence, connect cloud object storage.
+Existing browser content migrates automatically to IndexedDB. Do not clear site data unless you intentionally want to erase saved content.

@@ -67,3 +67,14 @@ Dashboard → Orders → Markets → Products → Homepage → Analytics → The
 - Homepage combines website name/logo, hero media/text and section media/text controls.
 - Image controls accept uploads from PC or mobile and optimize images before browser storage.
 - Short video uploads are supported up to 3 MB in this browser edition. Use cloud object storage for larger production videos.
+
+## VETRA v4.1 instant-save fix
+
+- Admin changes render immediately after Save.
+- Full content and uploaded media are persisted in IndexedDB instead of depending on the much smaller localStorage limit.
+- A visible Saving… / Saved / Not saved indicator confirms each operation.
+- BroadcastChannel plus a storage-event fallback refresh other open storefront tabs automatically.
+- Existing localStorage content is migrated automatically on first load.
+- Product videos can now be up to 15 MB in this browser-persistence edition.
+
+This improves same-browser reliability. Shared edits across different devices still require a connected production database and object storage.

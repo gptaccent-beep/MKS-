@@ -27,3 +27,7 @@ Every event keeps:
 - page path
 
 The backend additionally records a truncated user-agent and referrer. It does not intentionally store customer names, phone numbers, or delivery addresses.
+
+## v4.1 browser persistence migration
+
+On first load, the current browser content is copied into IndexedDB automatically. No manual database migration is required. IndexedDB removes the previous localStorage-size failure that could prevent uploaded images or edited content from persisting. Other open tabs on the same site refresh from the saved record automatically.
