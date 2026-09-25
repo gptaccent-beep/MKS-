@@ -78,3 +78,16 @@ Dashboard → Orders → Markets → Products → Homepage → Analytics → The
 - Product videos can now be up to 15 MB in this browser-persistence edition.
 
 This improves same-browser reliability. Shared edits across different devices still require a connected production database and object storage.
+
+## VETRA v4.2 cross-device publishing
+
+Version 4.2 adds a shared Supabase content record and public media bucket through protected Vercel Functions.
+
+- Safe storefront content is published after each admin Save.
+- Uploaded images and short videos are moved to Supabase Storage and replaced with shared public URLs.
+- Phones, computers and other devices load the same shared content.
+- Open devices poll for updates every 10 seconds.
+- Orders, customer details and raw analytics events are excluded from the public content API.
+- Local IndexedDB remains as an offline and same-device fallback.
+
+Complete the one-time steps in `CROSS-DEVICE-SETUP.md` before expecting cross-device publication.

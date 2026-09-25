@@ -1,15 +1,18 @@
-VETRA 4.1.0 — INSTANT SAVE FIX
+VETRA 4.2.0 — CROSS-DEVICE PUBLISHING
 
 1. Extract this ZIP into the repository root and replace the old files.
-2. Keep Vercel Root Directory blank.
-3. Commit and push all files.
-4. Promote the newest deployment to Production if needed.
-5. Hard-refresh both admin and storefront tabs.
+2. Run supabase/content.sql in the Supabase SQL Editor.
+3. Add the Vercel environment variables listed in CROSS-DEVICE-SETUP.md.
+4. Keep Vercel Root Directory blank.
+5. Commit, push and redeploy after adding the environment variables.
+6. Open /0 and sign in.
+7. Click Connect publishing and enter the same CONTENT_ADMIN_KEY configured in Vercel.
+8. Click Publish now and wait for the green Published badge.
+
+After connection, every admin Save publishes automatically to all devices.
 
 VERIFY
-- Admin header says Admin · v4.1.0.
-- The admin header shows Saving… then Saved after every change.
-- Keep the storefront open in another tab: saved text and image changes should refresh there automatically.
-- document.body.dataset.vetraVersion returns 4.1.0.
-
-Existing browser content migrates automatically to IndexedDB. Do not clear site data unless you intentionally want to erase saved content.
+- Admin header says Admin · v4.2.0.
+- The cloud badge says Published.
+- document.body.dataset.vetraVersion returns 4.2.0.
+- Open the storefront in an incognito window or on a phone; it should load the same content.

@@ -1,1 +1,1 @@
-VETRA 4.1.0 — instant-save and live content synchronization release
+VETRA 4.2.0 — cross-device cloud publishing release
