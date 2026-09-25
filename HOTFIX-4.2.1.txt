@@ -1,0 +1,3 @@
+VETRA v4.2.1
+
+Fixes cloud publishing failures caused by URL-encoded SVG placeholders or media data URLs with MIME parameters. Non-base64 placeholder images are preserved safely instead of blocking the entire publication.

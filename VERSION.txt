@@ -1,1 +1,1 @@
-VETRA 4.2.0 — cross-device cloud publishing release
+VETRA 4.2.1 — cross-device cloud publishing release

@@ -37,7 +37,7 @@ html[dir="rtl"] .analytics-table th,html[dir="rtl"] .analytics-table td,html[dir
 @media(max-width:900px){.v41-admin-status{flex-wrap:wrap;justify-content:flex-end}.v42-cloud-note{align-items:flex-start;flex-direction:column}.v42-cloud-actions{width:100%}.v42-cloud-actions button{flex:1}}
 @media(max-width:560px){.v42-cloud-state{min-height:30px;padding:0 7px;font-size:8px}.v42-cloud-note{padding:10px}.v42-cloud-actions{display:grid;grid-template-columns:1fr 1fr}.v42-cloud-actions button{width:100%}}
 
-</style></head><body data-vetra-version="4.2.0"><div id="app"></div><div id="overlay"></div><div id="toast" class="toast"></div>
+</style></head><body data-vetra-version="4.2.1"><div id="app"></div><div id="overlay"></div><div id="toast" class="toast"></div>
 <script>
 const themes=[['Gilded Noir','#b68a2c','#e8c878','#fffdf7','#fff','#171512'],['Jade Sun','#0f7a61','#e8b92f','#f3f5f2','#fff','#232323'],['Rose Quartz','#c65378','#e997ad','#fcecef','#fffafb','#4a1d3f'],['Cobalt Cloud','#2457d6','#95a8c4','#eaf2ff','#fff','#101828'],['Terracotta Silk','#b94f31','#8f3e27','#f3e3d3','#fff8ef','#35231d'],['Lavender Chrome','#7650d8','#a7adbf','#ede9fe','#f9fafb','#1f2937'],['Coral Lagoon','#e85353','#248f82','#e9fffb','#fff','#123036'],['Olive Champagne','#667a3d','#c8a464','#f5f0e6','#fffdf5','#1f2a1e'],['Monochrome Electric','#111827','#84c91f','#fff','#f3f4f6','#000']].map((x,i)=>({id:i,name:x[0],p:x[1],a:x[2],bg:x[3],card:x[4],ink:x[5]}));
 const sz=(n,sku,stock)=>({n,sku,stock});
@@ -288,7 +288,7 @@ v41Boot();
 
 </script><script id="vetra-v42-app">
 /* VETRA 4.2 — publish safe storefront content and media across devices */
-const V42_VERSION='4.2.0';
+const V42_VERSION='4.2.1';
 let v42CloudState='local',v42CloudUpdatedAt=0,v42PublishTimer=0,v42Publishing=false,v42Pulling=false;
 const v42Uploaded=new Map();
 function v42Key(){return sessionStorage.getItem('vetra-publish-key')||localStorage.getItem('vetra-publish-key')||''}
@@ -298,7 +298,7 @@ function v42ApplyPublic(content){if(!content||typeof content!=='object')return;i
 async function v42Request(url,options={}){const r=await fetch(url,{cache:'no-store',...options});let j={};try{j=await r.json()}catch{}if(!r.ok)throw Error(j.error||`Request failed (${r.status})`);return j}
 async function v42PullLatest(force=false){if(v42Pulling||v42Publishing)return;v42Pulling=true;try{const j=await v42Request('/api/content');const t=Date.parse(j.updatedAt||0)||0;if(j.data&&(force||t>v42CloudUpdatedAt)){v42CloudUpdatedAt=t;v42ApplyPublic(j.data);v42BaseSave();v42SetCloudState(v42Key()?'published':'local')}}catch(e){if(!/no content/i.test(e.message)&&sessionStorage.getItem('admin')==='1'&&v42Key())v42SetCloudState('error',e.message)}finally{v42Pulling=false}}
 async function v42UploadDataUrl(value,key){if(v42Uploaded.has(value))return v42Uploaded.get(value);const j=await v42Request('/api/media',{method:'POST',headers:{'Content-Type':'application/json','X-Content-Admin-Key':key},body:JSON.stringify({dataUrl:value})});v42Uploaded.set(value,j.url);return j.url}
-async function v42Cloudify(node,key){if(typeof node==='string'&&/^data:(image|video)\//.test(node))return v42UploadDataUrl(node,key);if(Array.isArray(node)){for(let i=0;i<node.length;i++)node[i]=await v42Cloudify(node[i],key);return node}if(node&&typeof node==='object'){for(const k of Object.keys(node))node[k]=await v42Cloudify(node[k],key);return node}return node}
+async function v42Cloudify(node,key){if(typeof node==='string'&&/^data:(image|video)\//i.test(node)){if(!/^data:[^,]+;base64,/i.test(node))return node;try{return await v42UploadDataUrl(node,key)}catch(e){if(/Invalid image or video/i.test(e.message))return node;throw e}}if(Array.isArray(node)){for(let i=0;i<node.length;i++)node[i]=await v42Cloudify(node[i],key);return node}if(node&&typeof node==='object'){for(const k of Object.keys(node))node[k]=await v42Cloudify(node[k],key);return node}return node}
 function v42ReplaceLive(node,replacements){if(!node||typeof node!=='object')return;for(const k of Object.keys(node)){const v=node[k];if(typeof v==='string'&&replacements.has(v))node[k]=replacements.get(v);else if(v&&typeof v==='object')v42ReplaceLive(v,replacements)}}
 async function v42PublishNow(showToast=true){const key=v42Key();if(!key){v42SetCloudState('local');if(showToast)v41Toast('Connect cloud publishing first.',true);return false}if(v42Publishing)return false;v42Publishing=true;clearTimeout(v42PublishTimer);v42SetCloudState('publishing');try{v42Uploaded.clear();let content=v42PublicSnapshot();content=await v42Cloudify(content,key);const replacements=new Map(v42Uploaded);if(replacements.size){v42ReplaceLive(data,replacements);v42BaseSave();render()}const j=await v42Request('/api/content',{method:'PUT',headers:{'Content-Type':'application/json','X-Content-Admin-Key':key},body:JSON.stringify({data:content})});v42CloudUpdatedAt=Date.parse(j.updatedAt||new Date().toISOString());v42SetCloudState('published',showToast?'Published to every device.':'');return true}catch(e){v42SetCloudState('error',e.message);return false}finally{v42Publishing=false}}
 function v42SchedulePublish(){if(!v42Key()){v42SetCloudState('local');return}clearTimeout(v42PublishTimer);v42PublishTimer=setTimeout(()=>v42PublishNow(false),650)}

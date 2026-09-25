@@ -1,4 +1,4 @@
-VETRA 4.2.0 — CROSS-DEVICE PUBLISHING
+VETRA 4.2.1 — CROSS-DEVICE PUBLISHING
 
 1. Extract this ZIP into the repository root and replace the old files.
 2. Run supabase/content.sql in the Supabase SQL Editor.
@@ -12,7 +12,7 @@ VETRA 4.2.0 — CROSS-DEVICE PUBLISHING
 After connection, every admin Save publishes automatically to all devices.
 
 VERIFY
-- Admin header says Admin · v4.2.0.
+- Admin header says Admin · v4.2.1.
 - The cloud badge says Published.
-- document.body.dataset.vetraVersion returns 4.2.0.
+- document.body.dataset.vetraVersion returns 4.2.1.
 - Open the storefront in an incognito window or on a phone; it should load the same content.
