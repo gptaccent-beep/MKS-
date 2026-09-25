@@ -1,0 +1,6 @@
+VETRA v4.2.2
+
+- Remembers the publishing connection automatically on the admin device.
+- Consolidates product purchase into one primary Order via WhatsApp button.
+- Removes the separate secondary WhatsApp buy button.
+- Normalizes Moroccan WhatsApp numbers and fixes store, product, checkout, and admin order links.
