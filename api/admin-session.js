@@ -1,0 +1,4 @@
+const {authorized,issue}=require('./_adminAuth');
+function json(res,status,value){res.statusCode=status;res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');res.end(JSON.stringify(value))}
+function body(req){if(req.body&&typeof req.body==='object')return req.body;try{return JSON.parse(req.body||'{}')}catch{return{}}}
+module.exports=async(req,res)=>{if(req.method==='GET')return json(res,authorized(req)?200:401,{authenticated:authorized(req)});if(req.method!=='POST')return json(res,405,{error:'Method not allowed'});const b=body(req),user=process.env.ADMIN_USERNAME||'Admin',pass=process.env.ADMIN_PASSWORD||'2009';if(String(b.user||'')!==user||String(b.pass||'')!==pass)return json(res,401,{error:'Incorrect administrator credentials'});if(!process.env.CONTENT_ADMIN_KEY)return json(res,503,{error:'CONTENT_ADMIN_KEY is not configured'});issue(res);return json(res,200,{authenticated:true})};

@@ -1,0 +1,7 @@
+VETRA v4.3.0
+
+- Removes the publishing connection prompt; admin login creates a secure server session automatically.
+- Fixes product purchase when no size was manually selected.
+- Sends Arabic WhatsApp order messages.
+- Adds shared Supabase analytics with store drill-down, product sales/leads/views and Today, 5-day, week, 30-day and all-time filters.
+- Run supabase/analytics-v4.3.sql once before using sales analytics.
