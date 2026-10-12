@@ -1,0 +1,3 @@
+VETRA v4.3.1
+
+Admin panel language is independent from storefront language. Arabic is the default admin language, with English available from the Admin language selector on login and in the dashboard header. The selection is remembered on the device.
