@@ -1,0 +1,7 @@
+VETRA v4.4.0
+
+- Orders now include every Supabase sale/order-request event, including the two already visible in Analytics.
+- Footer brand follows the configured website name.
+- Store logos are larger and clearer across storefront and admin.
+- Markets editor has a dedicated logo attachment area.
+- No new Supabase SQL or environment variables are required.
