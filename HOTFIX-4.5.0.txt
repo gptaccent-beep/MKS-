@@ -1,0 +1,7 @@
+VETRA v4.5.0
+
+- Store logo is now shown prominently inside the store hero, beside the store name and description.
+- Homepage admin has a complete Footer editor.
+- Footer name, description, column titles, links, newsletter text and copyright are editable.
+- Footer settings auto-save and publish across devices.
+- No new Supabase SQL or environment variables are required.
