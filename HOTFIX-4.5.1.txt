@@ -1,0 +1,4 @@
+VETRA v4.5.1
+
+Removed the visible demo administrator credentials from the login page.
+No Supabase or environment changes are required.
