@@ -1,0 +1,47 @@
+MKS SHOP v4.6.0 — SELLER ACCOUNTS + SOFT FOOTER TRANSITION
+
+IMPORTANT: This package is prepared for deployment. It has not changed your live Vercel site or Supabase database.
+
+1. Back up your project and Supabase database.
+2. In Supabase → SQL Editor, open supabase/sellers-v4.6.sql from this package, paste its contents, and click Run once.
+   This adds a private seller_accounts table and an atomic restricted-edit function. It does not delete existing website content.
+3. Copy the package contents into your MKS- Git repository, replacing matching files. Do not replace/delete your .git directory.
+4. Commit and push:
+   git add -A
+   git commit -m "Add restricted seller accounts and soft footer transition"
+   git push origin main
+5. Wait for Vercel Production to be Ready. Hard-refresh the site and sign in again as administrator.
+
+EXISTING VERCEL CONFIGURATION
+Uses the existing SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, CONTENT_ADMIN_KEY and optional SUPABASE_STORAGE_BUCKET. No seller secrets belong in public/browser variables.
+Strongly recommended: set ADMIN_USERNAME and a strong unique ADMIN_PASSWORD in Vercel and redeploy. The shared admin login now supports these server-configured credentials.
+
+ADMIN WORKFLOW
+- Admin → Markets → create a market. After successful cloud publication, a random seller username and password are generated automatically.
+- In that market's editor, scroll to Seller account.
+- Copy the credentials immediately and share them privately with the intended seller.
+- The password is displayed only in the current admin page until hidden/reloaded. It is stored as a salted scrypt hash in the database, not as readable text.
+- For existing markets, click Generate seller account.
+- Reset password issues a new password and revokes existing seller sessions. It can also reactivate a disabled account.
+- Disable account immediately blocks future seller requests.
+- If account generation fails, the market remains saved; run the SQL migration/check your configuration and retry Generate seller account.
+
+SELLER WORKFLOW
+- Open https://mks-gray.vercel.app/seller (or /seller on your production domain).
+- Sellers can also enter their credentials at /0 and will be sent to /seller, not the admin dashboard.
+- They may change ONLY their store logo and names of products already assigned to that store.
+- They may NOT change other stores/products, prices, stock, orders, analytics, homepage, footer, settings, or account access. They cannot create/delete products.
+- Changes publish directly to Supabase. Other storefront devices pick them up through existing polling (usually within 10 seconds).
+- Portal has Arabic default and an English option.
+- Seller sessions use signed HttpOnly Secure cookies with a 12-hour expiry. Always use HTTPS.
+
+DATA INTEGRITY
+- Seller updates are atomic and limited to allowed fields with store ownership checked on the server and in the database function.
+- Admin publishing rejects a stale snapshot instead of overwriting a newer seller edit. If you see a content-changed warning, refresh the admin page before editing again.
+- Footer configuration is now included in cloud content synchronization.
+
+TESTS COMPLETED LOCALLY
+- JavaScript syntax and browser UI tests.
+- Mocked backend tests for random hashed credentials, admin-only provisioning, cross-store denial, restricted fields, disable/revocation, reset.
+- Mobile and desktop visual inspections of seller dashboard; admin controls and footer transition.
+The SQL migration and real Supabase/Vercel end-to-end behavior must be verified after deployment.

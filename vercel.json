@@ -32,6 +32,10 @@
     {
       "source": "/0/:path*",
       "destination": "/index.html"
+    },
+    {
+      "source": "/seller",
+      "destination": "/seller.html"
     }
   ],
   "headers": [
@@ -44,7 +48,7 @@
         },
         {
           "key": "X-VETRA-Version",
-          "value": "4.2.0"
+          "value": "4.6.0"
         },
         {
           "key": "X-Content-Type-Options",
